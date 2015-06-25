@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
 
-  <title>Monitoreo de Armario de Pilotaje Automático</title>
+  <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -23,7 +23,12 @@
 <body>
 
 <header class="header black-bg">
-  <h3>Monitoreo de Armario de Pilotaje Automático</h3>
+  <div class="sidebar-toggle-box">
+    <div data-placement="right" data-original-title="Inicio">
+      <img src="img/metrol.png" id="ml"/>
+    </div>
+  </div>
+  <h3>Sistema de Monitoreo de Armario de Pilotaje Automático</h3>
 </header>
 
 
@@ -51,7 +56,11 @@
 
 <section id="main-content">
   <section class="wrapper">
-    <div class="content-panel">
+    <h3><i class="fa fa-angle-right"></i> San Lázaro</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="content-panel">
+
       <table class="table table-hover" id="t1">
         <h4><i class="fa fa-angle-right"></i> Estado actual de las señales estación San Lázaro</h4>
         <hr>
@@ -84,6 +93,8 @@
         </tr>
         </tbody>
       </table>
+        </div>
+      </div>
     </div>
   </section>
 </section>

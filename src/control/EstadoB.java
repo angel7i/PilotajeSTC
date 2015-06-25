@@ -16,9 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet("/estado")
+@WebServlet("/estadoB")
 
-public class Estado extends HttpServlet implements Servlet
+public class EstadoB extends HttpServlet implements Servlet
 {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -26,11 +26,14 @@ public class Estado extends HttpServlet implements Servlet
         try
         {
             int info = Integer.parseInt(req.getParameter("estacion"));
-            List<Actualizaciones> a = BaseDAO.getActualizacion(info);
+            List<Actualizaciones> a = LineaBDAO.getActualizacion(info);
 
             if (a == null)
             {
-                resp.getWriter().print("ErrorBD");
+                System.out.println("A null");
+                JsonObject e = Json.createObjectBuilder().
+                        add("error", "ErrorDB").build();
+                resp.getWriter().print(e);
                 return;
             }
 
@@ -51,6 +54,7 @@ public class Estado extends HttpServlet implements Servlet
         }
         catch (NullPointerException npe)
         {
+            System.out.println("NUllPoinExcp null");
             resp.getWriter().print("ErrorBD");
             npe.printStackTrace();
         }

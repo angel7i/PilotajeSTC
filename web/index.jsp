@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
 
-    <title>Monitoreo de Armario de Pilotaje Automático</title>
+    <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -23,7 +23,12 @@
   <body>
 
   <header class="header black-bg">
-    <h3>Monitoreo de Armario de Pilotaje Automático</h3>
+    <div class="sidebar-toggle-box">
+      <div data-placement="right" data-original-title="Inicio">
+        <img src="img/metrol.png" id="ml"/>
+      </div>
+    </div>
+    <h3>Sistema de Monitoreo de Armario de Pilotaje Automático</h3>
   </header>
 
 

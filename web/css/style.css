@@ -233,15 +233,21 @@ ul.top-menu > li > .logout {
 	font-weight: 700;
 }
 
+#sidebar ul{
+    padding-top: 15px;
+}
+
 #sidebar ul li {
     position: relative;
 }
 
 #sidebar .sub-menu > .sub li  {
+    padding-top: 20px;
     padding-left: 32px;
 }
 
 #sidebar .sub-menu > .sub li:last-child {
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 

@@ -1,20 +1,20 @@
 package control;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.context.internal.ManagedSessionContext;
-import org.hibernate.exception.JDBCConnectionException;
+import org.hibernate.exception.GenericJDBCException;
 import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.UnknownServiceException;
 import tablesB.Actualizaciones;
 
 import java.util.List;
 import java.util.Objects;
 
-public class BaseDAO
+public class LineaBDAO
 {
     private static String database;
     private static String db;
@@ -75,15 +75,28 @@ public class BaseDAO
 
     public static SessionFactory getSessionFactory(int sta)
     {
-        if (sessionFactory == null)
+        try
         {
-            System.out.println("Load Linea");
-            sessionFactory = buildSessionFactory();
-        }
-        else
-        {
-            if (!Objects.equals(database, db))
+            if (sessionFactory == null)
+            {
+                System.out.println("Load " + database);
                 sessionFactory = buildSessionFactory();
+            }
+            else
+            {
+                System.out.println(database + " = " + db);
+                if (!Objects.equals(database, db))
+                {
+                    System.out.println("Change " + database);
+                    sessionFactory.close();
+                    sessionFactory = buildSessionFactory();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error Build");
+            e.printStackTrace();
         }
 
         return sessionFactory;
@@ -94,52 +107,57 @@ public class BaseDAO
         db = database;
         database = config(sta);
         List<Actualizaciones> la = null;
-        Session session = getSessionFactory(sta).openSession();
-//        session.setFlushMode(FlushMode.MANUAL);
-        ManagedSessionContext.bind(session);
-        Transaction tr = session.getTransaction();
+        Session session = null;
+        Transaction tr = null;
+
+        try
+        {
+            session = getSessionFactory(sta).openSession();
+
+            ManagedSessionContext.bind(session);
+            tr = session.getTransaction();
+        }
+        catch (Exception e)
+        {
+            if (e instanceof UnknownServiceException)
+            {
+                sessionFactory.close();
+                return null;
+            }
+            else
+            {
+                System.out.println("Error de Session");
+                e.printStackTrace();
+            }
+        }
+
 
         try
         {
             tr.begin();
             la = session.createCriteria(Actualizaciones.class).list();
-//            ManagedSessionContext.unbind(sessionFactory);
-//            session.flush();
 
             if (!tr.wasCommitted())
                 tr.commit();
         }
-        catch (JDBCConnectionException je)
+        catch (GenericJDBCException ge)
         {
             System.out.println("Error1");
-//            if (tr != null)
-//                tr.rollback();
+            sessionFactory.close();
+//            ge.printStackTrace();
 
-            je.printStackTrace();
-        }
-        catch (HibernateException he)
-        {
-            System.out.println("Error2");
-//            if (he instanceof TransactionException)
-//            {
-//                return null;
-//            }
-//            else if (tr != null)
-//                return null;
-
-            he.printStackTrace();
+            return null;
         }
         catch (Exception e)
         {
-            System.out.println("Error3");
-//            if (tr != null)
-//                return null;
-
+            System.out.println("Error2");
             e.printStackTrace();
+
+            return null;
         }
         finally
         {
-            if (session.isConnected() || session.isOpen())
+            if (session != null && (session.isConnected() || session.isOpen()))
                 session.close();
             ManagedSessionContext.unbind(sessionFactory);
         }

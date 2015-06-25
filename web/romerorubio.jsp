@@ -28,7 +28,7 @@
       <img src="img/metrol.png" id="ml"/>
     </div>
   </div>
-  <h3>Monitoreo de Armario de Pilotaje Automático</h3>
+  <h3>Sistema de Monitoreo de Armario de Pilotaje Automático</h3>
 </header>
 
 

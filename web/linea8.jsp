@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
 
-  <title>Monitoreo de Armario de Pilotaje Automático</title>
+  <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -24,7 +24,12 @@
 <section id="container">
 
   <header class="header black-bg">
-    <h3>Monitoreo de Armario de Pilotaje Automático</h3>
+    <div class="sidebar-toggle-box">
+      <div data-placement="right" data-original-title="Inicio">
+        <img src="img/metrol.png" id="ml"/>
+      </div>
+    </div>
+    <h3>Sistema de Monitoreo de Armario de Pilotaje Automático</h3>
   </header>
 
 
@@ -37,12 +42,12 @@
           </a>
         </li>
         <li class="sub-menu">
-          <a href="" >
+          <a href="lineab.jsp" >
             <span>Línea B</span>
           </a>
         </li>
         <li class="sub-menu">
-          <a href="" >
+          <a href="linea8.jsp" >
             <span>Línea 8</span>
           </a>
         </li>
@@ -59,22 +64,33 @@
       <table class="table table-hover">
         <tbody>
         <tr>
-          <td><a href="romerorubio.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="buenavista.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="garibaldi.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="tepito.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+          <td><span>Iztacalco</span><a href="iztacalco.jsp"><img class="img-responsive" src="img/iztacalco.png" alt=""></a></td>
+          <td><span>Chabacano</span><a href="chabacano.jsp"><img class="img-responsive" src="img/chabacano.png" alt=""></a></td>
+          <td><span>Garibaldi</span><a href="garibaldi8.jsp"><img class="img-responsive" src="img/garibaldi.png" alt=""></a></td>
+          <td><span>Obrera</span><a href="obrera.jsp"><img class="img-responsive" src="img/obrera.png" alt=""></a></td>
         </tr>
         <tr>
-          <td><a href="sanlazaro.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="oceania.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="villaaragon.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="impulsora.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+          <td><span>Iztapalapa</span><a href="iztapalapa.jsp"><img class="img-responsive" src="img/iztapalapa.png" alt=""></a></td>
+          <td><span>La Viga</span><a href="laviga.jsp"><img class="img-responsive" src="img/laviga.png" alt=""></a></td>
+          <td><span>Constitución de 1917</span><a href="constitucion.jsp"><img class="img-responsive" src="img/constitucion.png" alt=""></a></td>
+          <td><span>UAM-I</span><a href="uam.jsp"><img class="img-responsive" src="img/uam-i.png" alt=""></a></td>
         </tr>
         <tr>
-          <td><a href="muzquiz.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="olimpica.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="cdazteca.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-          <td><a href="pmtcdazteca.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+          <td><span>Cerro de la Estrella</span><a href="cerroestrella.jsp"><img class="img-responsive" src="img/cerroestrella.png" alt=""></a></td>
+          <td><span>Escuadrón 201</span><a href="escuadron.jsp"><img class="img-responsive" src="img/escuadron201.png" alt=""></a></td>
+          <td><span>Salto del Agua</span><a href="saltoagua.jsp"><img class="img-responsive" src="img/saltodelagua.png" alt=""></a></td>
+          <td><span>Bellas Artes</span><a href="bellasartes.jsp"><img class="img-responsive" src="img/bellasartes.png" alt=""></a></td>
+        </tr>
+        <tr>
+          <td><span>San Juan de Letrán</span><a href="sanjuan.jsp"><img class="img-responsive" src="img/sanjuandeletran.png" alt=""></a></td>
+          <td><span>Aculco</span><a href="aculco.jsp"><img class="img-responsive" src="img/aculco.png" alt=""></a></td>
+          <td><span>Apatlaco</span><a href="apatlaco.jsp"><img class="img-responsive" src="img/apatlaco.png" alt=""></a></td>
+          <td><span>Coyuya</span><a href="coyuya.jsp"><img class="img-responsive" src="img/coyuya.png" alt=""></a></td>
+        </tr>
+        <tr>
+          <td><span>Doctores</span><a href="doctores.jsp"><img class="img-responsive" src="img/doctores.png" alt=""></a></td>
+          <td><span>Atlalilco</span><a href="atlalilco.jsp"><img class="img-responsive" src="img/atlalilco.png" alt=""></a></td>
+          <td><span>Santa Anita</span><a href="santaanita.jsp"><img class="img-responsive" src="img/santaanita.png" alt=""></a></td>
         </tr>
         </tbody>
       </table>

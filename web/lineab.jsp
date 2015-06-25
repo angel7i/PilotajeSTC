@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
 
-  <title>Monitoreo de Armario de Pilotaje Automático</title>
+  <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -24,7 +24,12 @@
 <section id="container">
 
   <header class="header black-bg">
-    <h3>Monitoreo de Armario de Pilotaje Automático</h3>
+    <div class="sidebar-toggle-box">
+      <div data-placement="right" data-original-title="Inicio">
+        <img src="img/metrol.png" id="ml"/>
+      </div>
+    </div>
+    <h3>Sistema de Monitoreo de Armario de Pilotaje Automático</h3>
   </header>
 
 
@@ -37,12 +42,12 @@
         </a>
       </li>
       <li class="sub-menu">
-        <a href="" >
+        <a href="lineab.jsp" >
           <span>Línea B</span>
         </a>
       </li>
       <li class="sub-menu">
-        <a href="" >
+        <a href="linea8.jsp" >
           <span>Línea 8</span>
         </a>
       </li>
@@ -59,22 +64,22 @@
     <table class="table table-hover">
       <tbody>
       <tr>
-        <td><a href="romerorubio.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="buenavista.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="garibaldi.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="tepito.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+        <td><span>Romero Rubio</span><a href="romerorubio.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+        <td><span>Buenavista</span><a href="buenavista.jsp"><img class="img-responsive" src="img/buenavista.png" alt=""></a></td>
+        <td><span>Garibaldi</span><a href="garibaldiB.jsp"><img class="img-responsive" src="img/garibaldi.png" alt=""></a></td>
+        <td><span>Tepito</span><a href="tepito.jsp"><img class="img-responsive" src="img/tepito.png" alt=""></a></td>
       </tr>
       <tr>
-        <td><a href="sanlazaro.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="oceania.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="villaaragon.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="impulsora.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+        <td><span>San Lázaro</span><a href="sanlazaro.jsp"><img class="img-responsive" src="img/sanlazaro.png" alt=""></a></td>
+        <td><span>Deportivo Oceanía</span><a href="oceania.jsp"><img class="img-responsive" src="img/oceania.png" alt=""></a></td>
+        <td><span>Villa Aragón</span><a href="villaaragon.jsp"><img class="img-responsive" src="img/villaaragon.png" alt=""></a></td>
+        <td><span>Impulsora</span><a href="impulsora.jsp"><img class="img-responsive" src="img/impulsora.png" alt=""></a></td>
       </tr>
       <tr>
-        <td><a href="muzquiz.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="olimpica.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="cdazteca.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
-        <td><a href="pmtcdazteca.jsp"><img class="img-responsive" src="img/romerorubio.png" alt=""></a></td>
+        <td><span>Múzquiz</span><a href="muzquiz.jsp"><img class="img-responsive" src="img/muzquiz.png" alt=""></a></td>
+        <td><span>Olímpica</span><a href="olimpica.jsp"><img class="img-responsive" src="img/olimpica.png" alt=""></a></td>
+        <td><span>Ciudad Azteca</span><a href="cdazteca.jsp"><img class="img-responsive" src="img/cdazteca.png" alt=""></a></td>
+        <td><span>PMT Cd Azteca</span><a href="pmtcdazteca.jsp"><img class="img-responsive" src="img/cdazteca.png" alt=""></a></td>
       </tr>
       </tbody>
     </table>

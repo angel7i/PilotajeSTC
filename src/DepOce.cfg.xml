@@ -23,5 +23,6 @@
         <mapping class="tablesB.Usuarios"/>
         <mapping class="tablesB.Actualizaciones"/>
         <mapping class="tablesB.Resete"/>
+        <mapping class="tablesB.Cambioedo"/>
     </session-factory>
 </hibernate-configuration>

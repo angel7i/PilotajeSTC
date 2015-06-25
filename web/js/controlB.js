@@ -1,4 +1,5 @@
 var loop = null;
+var error = false;
 
 $(document).ready(function()
 {
@@ -14,14 +15,23 @@ function refreshTable()
     $.ajax(
         {
             type: 'POST',
-            url: 'estado',
+            url: 'estadoB',
             data: json,
             dataType: 'json',
             success: function (data, textStatus)
             {
                 //alert(JSON.stringify(data));
-                updateTable(data);
-                console.log(textStatus + " - "  + loop);
+                if (data.error != "ErrorDB")
+                {
+                    updateTable(data);
+                    console.log(textStatus + " - "  + loop);
+                }
+                else
+                {
+                    error  = true;
+                    console.log("Error de conexion");
+                    clearInterval(loop);
+                }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -37,7 +47,9 @@ function refreshTable()
 $(window).load(function()
 {
     refreshTable();
-    loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
+
+    if (!error)
+        loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
 
 function getLinea()
@@ -51,7 +63,7 @@ function getLinea()
             return 1;
         case "buenavista":
             return 2;
-        case "garibaldi":
+        case "garibaldiB":
             return 3;
         case "tepito":
             return 4;

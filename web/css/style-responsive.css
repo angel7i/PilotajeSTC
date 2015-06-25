@@ -42,6 +42,10 @@
         position: none !important;
     }
 
+    .wrapper{
+        margin-top: 220px;
+    }
+
     #sidebar > ul > li > a > span {
         line-height: 35px;
     }
@@ -238,7 +242,15 @@
 
 
 
-@media (max-width: 480px) {
+@media (max-width: 480px)
+{
+    .wrapper{
+        margin-top: 250px;
+    }
+
+    #sidebar ul{
+        margin-top: 90px;
+    }
 
     .notify-row, .search, .dont-show , .inbox-head .sr-input, .inbox-head .sr-btn{
         display: none;
@@ -263,6 +275,15 @@
 }
 
 @media (max-width:320px) {
+
+    .wrapper{
+        margin-top: 250px;
+    }
+
+    #sidebar ul{
+        margin-top: 90px;
+    }
+
     .login-social-link a {
         padding: 15px 17px !important;
     }
