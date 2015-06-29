@@ -10,6 +10,7 @@ import org.hibernate.exception.GenericJDBCException;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.UnknownServiceException;
 import tables8.Actual;
+import tables8.Cambioedo;
 
 import java.util.List;
 import java.util.Objects;
@@ -93,7 +94,7 @@ public class Linea8DAO
         {
             if (sessionFactory == null)
             {
-                System.out.println("Load " + database);
+//                System.out.println("Load " + database);
                 sessionFactory = buildSessionFactory();
             }
             else
@@ -101,7 +102,7 @@ public class Linea8DAO
                 System.out.println(database + " = " + db);
                 if (!Objects.equals(database, db))
                 {
-                    System.out.println("Change " + database);
+//                    System.out.println("Change " + database);
                     sessionFactory.close();
                     sessionFactory = buildSessionFactory();
                 }
@@ -177,5 +178,64 @@ public class Linea8DAO
         }
 
         return la.get(0);
+    }
+
+    public static List<Cambioedo> getPasivaciones(int sta)
+    {
+        db = database;
+        database = config(sta);
+        List<Cambioedo> cambioedos = null;
+        Session session = null;
+        Transaction tr = null;
+
+        try
+        {
+            session = getSessionFactory(sta).openSession();
+            ManagedSessionContext.bind(session);
+            tr = session.getTransaction();
+        }
+        catch (Exception e)
+        {
+            if (e instanceof UnknownServiceException)
+            {
+                sessionFactory.close();
+            }
+            else
+            {
+                System.out.println("Error de Session");
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+        try
+        {
+            tr.begin();
+            cambioedos = session.createCriteria(Cambioedo.class).list();
+
+            if (!tr.wasCommitted())
+                tr.commit();
+        }
+        catch (GenericJDBCException ge)
+        {
+            System.out.println("Error1");
+            sessionFactory.close();
+//            ge.printStackTrace();
+            return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error2");
+            e.printStackTrace();
+            return null;
+        }
+        finally
+        {
+            if (session != null && (session.isConnected() || session.isOpen()))
+                session.close();
+            ManagedSessionContext.unbind(sessionFactory);
+        }
+
+        return cambioedos;
     }
 }

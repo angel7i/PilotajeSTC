@@ -18,7 +18,7 @@ import java.util.List;
 
 @WebServlet("/estadoB")
 
-public class EstadoB extends HttpServlet implements Servlet
+public class LineaBEstado extends HttpServlet implements Servlet
 {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -26,6 +26,7 @@ public class EstadoB extends HttpServlet implements Servlet
         try
         {
             int info = Integer.parseInt(req.getParameter("estacion"));
+//            System.out.println("Parametro: " + info);
             List<Actualizaciones> a = LineaBDAO.getActualizacion(info);
 
             if (a == null)

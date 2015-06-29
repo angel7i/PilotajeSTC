@@ -1,14 +1,15 @@
 var loop = null;
 var error = false;
+var estacion = $("#estacion").val();
 
 $(document).ready(function()
 {
-    //loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
 
 function refreshTable()
 {
-    var data = getLinea();
+    //console.log(estacion);
+    var data = getLinea(estacion);
     data = JSON.stringify(data);
     var json = "estacion=" + data;
 
@@ -36,7 +37,7 @@ function refreshTable()
             error: function (jqXHR, textStatus, errorThrown)
             {
                 clearInterval(loop);
-                console.log("loop = " +  loop);
+                //console.log("loop = " +  loop);
                 //alert("No hay conexion");
                 //alert('Error: ' + errorThrown + ' -  ' + textStatus);
                 console.log(errorThrown + ' : ' + textStatus);
@@ -52,11 +53,8 @@ $(window).load(function()
         loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
 
-function getLinea()
+function getLinea(linea)
 {
-    var linea = window.location.pathname;
-    linea = linea.substring(1).split(".")[0];
-
     switch (linea)
     {
         case "romerorubio":

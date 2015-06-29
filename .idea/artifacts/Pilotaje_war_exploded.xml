@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Pilotaje:war exploded">
+  <artifact type="war" name="Pilotaje:war exploded">
     <output-path>C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/Pilotaje</output-path>
-    <root id="root">
+    <root id="archive" name="Pilotaje_war exploded.war">
       <element id="javaee-facet-resources" facet="Pilotaje/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -11,6 +11,9 @@
           <element id="library" level="project" name="Hibernate" />
           <element id="library" level="project" name="Json" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

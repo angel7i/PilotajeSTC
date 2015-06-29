@@ -22,6 +22,72 @@
 </head>
 <body>
 
+<%
+  String estacion = null;
+
+  switch (request.getParameter("estacion"))
+  {
+    case "iztacalco":
+      estacion = "Iztacalco";
+      break;
+    case "chabacano":
+      estacion = "Chabacano";
+      break;
+    case "garibaldi8":
+      estacion = "Garibaldi";
+      break;
+    case "obrera":
+      estacion = "Obrera";
+      break;
+    case "iztapalapa":
+      estacion = "Iztapalapa";
+      break;
+    case "laviga":
+      estacion = "La Viga";
+      break;
+    case "constitucion":
+      estacion = "Constitución de 1917";
+      break;
+    case "uam":
+      estacion = "UAM-I";
+      break;
+    case "cerroestrella":
+      estacion = "Cerro de la Estrella";
+      break;
+    case "escuadron":
+      estacion = "Escuadrón 201";
+      break;
+    case "saltoagua":
+      estacion = "Salto del Agua";
+      break;
+    case "bellasartes":
+      estacion = "Bellas Artes";
+      break;
+    case "sanjuan":
+      estacion = "San Juan de Letrán";
+      break;
+    case "aculco":
+      estacion = "Aculco";
+      break;
+    case "apatlaco":
+      estacion = "Apatlaco";
+      break;
+    case "coyuya":
+      estacion = "Coyuya";
+      break;
+    case "doctores":
+      estacion = "Doctores";
+      break;
+    case "atlalilco":
+      estacion = "Atlalilco";
+      break;
+    case "santaanita":
+      estacion = "Santa Anita";
+      break;
+  }
+%>
+<input type="hidden" id="estacion" value='<%=request.getParameter("estacion")%>' />
+
 <header class="header black-bg">
   <div class="sidebar-toggle-box">
     <div data-placement="right" data-original-title="Inicio">
@@ -41,13 +107,23 @@
         </a>
       </li>
       <li class="sub-menu">
-        <a href="lineab.jsp" >
-          <span>Línea B</span>
+        <a href="lineaBM.jsp" >
+          <span>Monitoreo Línea B</span>
         </a>
       </li>
       <li class="sub-menu">
-        <a href="linea8.jsp" >
-          <span>Línea 8</span>
+        <a href="linea8M.jsp" >
+          <span>Monitoreo Línea 8</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a href="lineaBP.jsp" >
+          <span>Pasivación Línea B</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a href="linea8P.jsp" >
+          <span>Pasivación Línea 8</span>
         </a>
       </li>
     </ul>
@@ -56,13 +132,13 @@
 
 <section id="main-content">
   <section class="wrapper">
-    <h3><i class="fa fa-angle-right"></i> Obrera</h3>
+    <h3><i class="fa fa-angle-right"></i> <%=estacion%></h3>
     <div class="row">
       <div class="col-md-12">
         <div class="content-panel">
 
           <table class="table table-hover" id="t1">
-            <h4><i class="fa fa-angle-right"></i> Estado actual de las señales estación Obrera</h4>
+            <h4><i class="fa fa-angle-right"></i> Estado actual de las señales estación <%=estacion%></h4>
             <hr>
             <thead>
             <tr>

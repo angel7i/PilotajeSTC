@@ -79,7 +79,7 @@ public class LineaBDAO
         {
             if (sessionFactory == null)
             {
-                System.out.println("Load " + database);
+//                System.out.println("Load " + database);
                 sessionFactory = buildSessionFactory();
             }
             else
@@ -87,7 +87,7 @@ public class LineaBDAO
                 System.out.println(database + " = " + db);
                 if (!Objects.equals(database, db))
                 {
-                    System.out.println("Change " + database);
+//                    System.out.println("Change " + database);
                     sessionFactory.close();
                     sessionFactory = buildSessionFactory();
                 }
@@ -106,6 +106,7 @@ public class LineaBDAO
     {
         db = database;
         database = config(sta);
+//        System.out.println("Estacion = " + database);
         List<Actualizaciones> la = null;
         Session session = null;
         Transaction tr = null;

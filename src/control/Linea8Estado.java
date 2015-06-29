@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @WebServlet("/estado8")
-public class Estado8 extends HttpServlet implements Servlet
+public class Linea8Estado extends HttpServlet implements Servlet
 {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException

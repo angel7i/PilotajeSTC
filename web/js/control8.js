@@ -1,14 +1,15 @@
 var loop = null;
 var error = false;
+var estacion = $("#estacion").val();
 
 $(document).ready(function()
 {
-    //loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
 
 function refreshTable()
 {
-    var data = getLinea();
+    //console.log(estacion);
+    var data = getLinea(estacion);
     data = JSON.stringify(data);
     var json = "estacion=" + data;
 
@@ -36,7 +37,7 @@ function refreshTable()
             error: function (jqXHR, textStatus, errorThrown)
             {
                 clearInterval(loop);
-                console.log("loop = " +  loop);
+                //console.log("loop = " +  loop);
                 //alert("No hay conexion");
                 //alert('Error: ' + errorThrown + ' -  ' + textStatus);
                 console.log(errorThrown + ' : ' + textStatus);
@@ -52,10 +53,8 @@ $(window).load(function()
         loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
 
-function getLinea()
+function getLinea(linea)
 {
-    var linea = window.location.pathname;
-    linea = linea.substring(1).split(".")[0];
 
     switch (linea)
     {
@@ -118,7 +117,7 @@ function updateTable(info)
 
     var td1 = tr1.getElementsByTagName("td");
     td1.item(1).innerHTML = info.vif1;
-    if (info.vif1 == 1)
+    if (info.vif1 == 0)
     {
         td1.item(2).innerHTML =
             "<span class='label label-success label-big'>Activo</span>";
@@ -132,7 +131,7 @@ function updateTable(info)
 
     var td2 = tr2.getElementsByTagName("td");
     td2.item(1).innerHTML = info.vif2;
-    if (info.vif2 == 1)
+    if (info.vif2 == 0)
     {
         td2.item(2).innerHTML =
             "<span class='label label-success label-big'>Activo</span>";
@@ -160,7 +159,7 @@ function updateTable(info)
 
     var td4 = tr4.getElementsByTagName("td");
     td4.item(1).innerHTML = info.npc;
-    if (info.npc == 1)
+    if (info.npc == 0)
     {
         td4.item(2).innerHTML =
             "<span class='label label-success label-big'>Activo</span>";

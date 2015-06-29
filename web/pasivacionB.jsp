@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
 
-  <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
+  <title>Monitoreo de Armario de Pilotaje Automático</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -41,13 +41,23 @@
         </a>
       </li>
       <li class="sub-menu">
-        <a href="lineab.jsp" >
+        <a href="lineaBM.jsp" >
           <span>Línea B</span>
         </a>
       </li>
       <li class="sub-menu">
-        <a href="linea8.jsp" >
+        <a href="linea8M.jsp" >
           <span>Línea 8</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a href="lineaBP.jsp" >
+          <span>Pasivación Línea B</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a href="linea8P.jsp" >
+          <span>Pasivación Línea 8</span>
         </a>
       </li>
     </ul>
@@ -56,43 +66,43 @@
 
 <section id="main-content">
   <section class="wrapper">
-    <h3><i class="fa fa-angle-right"></i> PMT Ciudad Azteca</h3>
+    <h3><i class="fa fa-angle-right"></i> Romero Rubio</h3>
     <div class="row">
       <div class="col-md-12">
         <div class="content-panel">
 
-      <table class="table table-hover" id="t1">
-        <h4><i class="fa fa-angle-right"></i> Estado actual de las señales estación PMT Ciudad Azteca</h4>
-        <hr>
-        <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Estado</th>
-          <th>Actividad</th>
-          <th>Fecha</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Fuente de 56 V</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Fuente de 72 V</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>LED de Pasivación</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
+          <table class="table table-hover" id="t1">
+            <h4><i class="fa fa-angle-right"></i> Estado actual de las señales estación Romero Rubio</h4>
+            <hr>
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Estado</th>
+              <th>Actividad</th>
+              <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Fuente de 56 V</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Fuente de 72 V</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>LED de Pasivación</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -109,6 +119,6 @@
 
 <!--common script for all pages-->
 <script src="js/common-scripts.js"></script>
-<script src="js/controlB.js"></script>
+<script src="js/pasivacionB.js"></script>
 </body>
 </html>

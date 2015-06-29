@@ -41,13 +41,23 @@
             </a>
           </li>
           <li class="sub-menu">
-            <a href="lineab.jsp" >
-              <span>Línea B</span>
+            <a href="lineaBM.jsp" >
+              <span>Monitoreo Línea B</span>
             </a>
           </li>
           <li class="sub-menu">
-            <a href="linea8.jsp" >
-              <span>Línea 8</span>
+            <a href="linea8M.jsp" >
+              <span>Monitoreo Línea 8</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a href="lineaBP.jsp" >
+              <span>Pasivación Línea B</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a href="linea8P.jsp" >
+              <span>Pasivación Línea 8</span>
             </a>
           </li>
         </ul>
@@ -56,37 +66,15 @@
 
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Línea</h3>
-        <div class="row mt">
-          <div class="col-lg-2">
-
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-              <div class="project-wrapper">
-                <div class="project">
-                  <div class="photo-wrapper">
-                    <div class="photo">
-                      <a href="lineab.jsp"><img class="img-responsive" src="img/lineab.png" alt=""></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-              <div class="project-wrapper">
-                <div class="project">
-                  <div class="photo-wrapper">
-                    <div class="photo">
-                      <a href="linea8.jsp"><img class="img-responsive" src="img/linea8.png" alt=""></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-            </div>
-        </div>
+        <h3><i class="fa fa-angle-right"></i> Monitoreo de Armario de las Líneas </h3>
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <td><h3><span>Línea B</span></h3><a href="lineaBM.jsp"><img class="img-responsive" src="img/lineab.png" alt=""></a></td>
+            <td><h3><span>Línea 8</span></h3><a href="linea8M.jsp"><img class="img-responsive" src="img/linea8.png" alt=""></a></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </section>
 
