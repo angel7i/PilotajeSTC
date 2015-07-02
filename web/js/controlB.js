@@ -22,7 +22,7 @@ function refreshTable()
             success: function (data, textStatus)
             {
                 //alert(JSON.stringify(data));
-                if (data.error != "ErrorDB")
+                if (data.error != "ErrorConexion")
                 {
                     updateTable(data);
                     console.log(textStatus + " - "  + loop);
@@ -30,12 +30,13 @@ function refreshTable()
                 else
                 {
                     error  = true;
-                    console.log("Error de conexion");
+                    alert("No hay conexión");
                     clearInterval(loop);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
+                error  = true;
                 clearInterval(loop);
                 //console.log("loop = " +  loop);
                 //alert("No hay conexion");
@@ -48,10 +49,13 @@ function refreshTable()
 $(window).load(function()
 {
     refreshTable();
-
-    if (!error)
-        loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
+
+loop = window.setInterval(function()
+{
+    if (!error)
+        refreshTable();
+},30000);
 
 function getLinea(linea)
 {
@@ -99,12 +103,12 @@ function updateTable(info)
     if (info[0].estado == 1)
     {
         td1.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td1.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td1.item(3).innerHTML = info[0].fecha;
 
@@ -113,12 +117,12 @@ function updateTable(info)
     if (info[1].estado == 1)
     {
         td2.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td2.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td2.item(3).innerHTML = info[1].fecha;
 
@@ -127,12 +131,12 @@ function updateTable(info)
     if (info[2].estado == 1)
     {
         td3.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td3.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td3.item(3).innerHTML = info[2].fecha;
 }

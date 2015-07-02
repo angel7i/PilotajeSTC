@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.UnknownServiceException;
 import tablesB.Actualizaciones;
 
+import java.net.InetAddress;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class LineaBDAO
     private static String db;
     private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
+    private static String url;
 
     public static String config(int sta)
     {
@@ -61,16 +63,28 @@ public class LineaBDAO
             Configuration configuration = new Configuration();
             configuration.configure(database);
 
+            url = configuration.getProperty("connection.url").substring(13).split("/")[0];
+
+            InetAddress address = InetAddress.getByName(url);
+            boolean reachable = address.isReachable(2000);
+
+
+            if (!reachable)
+            {
+                return null;
+            }
+
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
             return sessionFactory;
         }
-        catch (Throwable ex)
+        catch (Exception ex)
         {
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
+            ex.printStackTrace();
         }
+
+        return null;
     }
 
     public static SessionFactory getSessionFactory(int sta)
@@ -79,15 +93,15 @@ public class LineaBDAO
         {
             if (sessionFactory == null)
             {
-//                System.out.println("Load " + database);
+                System.out.println("Load " + database);
                 sessionFactory = buildSessionFactory();
             }
             else
             {
-                System.out.println(database + " = " + db);
+                System.out.println("\r" + database + " = " + db);
                 if (!Objects.equals(database, db))
                 {
-//                    System.out.println("Change " + database);
+                    System.out.println("Change to " + database);
                     sessionFactory.close();
                     sessionFactory = buildSessionFactory();
                 }
@@ -122,16 +136,25 @@ public class LineaBDAO
         {
             if (e instanceof UnknownServiceException)
             {
-                sessionFactory.close();
+                System.out.println("Error de Servicio");
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
+
                 return null;
             }
-            else
+            else if (e instanceof NullPointerException)
             {
                 System.out.println("Error de Session");
-                e.printStackTrace();
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
+
+                return null;
             }
         }
-
 
         try
         {
@@ -144,22 +167,37 @@ public class LineaBDAO
         catch (GenericJDBCException ge)
         {
             System.out.println("Error1");
-            sessionFactory.close();
-//            ge.printStackTrace();
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
 
             return null;
         }
         catch (Exception e)
         {
             System.out.println("Error2");
-            e.printStackTrace();
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
+
 
             return null;
         }
         finally
         {
             if (session != null && (session.isConnected() || session.isOpen()))
+            {
+                if (tr != null && tr.isActive())
+                {
+                    tr.rollback();
+                }
+
                 session.close();
+                session = null;
+            }
+
             ManagedSessionContext.unbind(sessionFactory);
         }
 

@@ -75,7 +75,7 @@
         <tbody>
         <tr>
           <td><span>Iztacalco</span><a href="estado8.jsp?estacion=iztacalco"><img class="img-responsive" src="img/iztacalco.png" alt=""></a></td>
-          <td><span>Chabacano</span><a href="estadoB.jsp?estacion=chabacano"><img class="img-responsive" src="img/chabacano.png" alt=""></a></td>
+          <td><span>Chabacano</span><a href="estado8.jsp?estacion=chabacano"><img class="img-responsive" src="img/chabacano.png" alt=""></a></td>
           <td><span>Garibaldi</span><a href="estado8.jsp?estacion=garibaldi8"><img class="img-responsive" src="img/garibaldi.png" alt=""></a></td>
           <td><span>Obrera</span><a href="estado8.jsp?estacion=obrera"><img class="img-responsive" src="img/obrera.png" alt=""></a></td>
         </tr>
@@ -115,8 +115,5 @@
 <%--Scripts--%>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
-<!--common script for all pages-->
-<script src="js/common-scripts.js"></script>
 </body>
 </html>

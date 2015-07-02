@@ -34,7 +34,7 @@
 
     <aside>
       <div id="sidebar"  class="nav-collapse ">
-        <ul class="sidebar-menu" id="nav-accordion">
+        <ul class="sidebar-menu" >
           <li class="sub-menu">
             <a href="index.jsp" >
               <span>Líneas</span>
@@ -85,8 +85,5 @@
       <%--Scripts--%>
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-    <!--common script for all pages-->
-    <script src="js/common-scripts.js"></script>
   </body>
 </html>

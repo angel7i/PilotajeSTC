@@ -12,6 +12,7 @@ import org.hibernate.service.UnknownServiceException;
 import tables8.Actual;
 import tables8.Cambioedo;
 
+import java.net.InetAddress;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,7 @@ public class Linea8DAO
     private static String db;
     private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
+    private static String url;
 
     public static String config(int sta)
     {
@@ -76,6 +78,17 @@ public class Linea8DAO
             Configuration configuration = new Configuration();
             configuration.configure(database);
 
+            url = configuration.getProperty("connection.url").substring(13).split("/")[0];
+
+            InetAddress address = InetAddress.getByName(url);
+            boolean reachable = address.isReachable(2000);
+
+
+            if (!reachable)
+            {
+                return null;
+            }
+
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
@@ -128,21 +141,31 @@ public class Linea8DAO
         try
         {
             session = getSessionFactory(sta).openSession();
-
             ManagedSessionContext.bind(session);
             tr = session.getTransaction();
+
         }
         catch (Exception e)
         {
             if (e instanceof UnknownServiceException)
             {
-                sessionFactory.close();
+                System.out.println("Error de Servicio");
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
+
                 return null;
             }
             else
             {
                 System.out.println("Error de Session");
-                e.printStackTrace();
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
+
+                return null;
             }
         }
 
@@ -158,22 +181,36 @@ public class Linea8DAO
         catch (GenericJDBCException ge)
         {
             System.out.println("Error1");
-            sessionFactory.close();
-//            ge.printStackTrace();
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
 
             return null;
         }
         catch (Exception e)
         {
             System.out.println("Error2");
-            e.printStackTrace();
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
 
             return null;
         }
         finally
         {
             if (session != null && (session.isConnected() || session.isOpen()))
+            {
+                if (tr != null && tr.isActive())
+                {
+                    tr.rollback();
+                }
+
                 session.close();
+                session = null;
+            }
+
             ManagedSessionContext.unbind(sessionFactory);
         }
 
@@ -198,12 +235,19 @@ public class Linea8DAO
         {
             if (e instanceof UnknownServiceException)
             {
-                sessionFactory.close();
+                System.out.println("Error de Servicio");
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
             }
             else
             {
                 System.out.println("Error de Session");
-                e.printStackTrace();
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
             }
 
             return null;
@@ -219,14 +263,21 @@ public class Linea8DAO
         catch (GenericJDBCException ge)
         {
             System.out.println("Error1");
-            sessionFactory.close();
-//            ge.printStackTrace();
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
+
             return null;
         }
         catch (Exception e)
         {
             System.out.println("Error2");
-            e.printStackTrace();
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
+
             return null;
         }
         finally

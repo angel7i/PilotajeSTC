@@ -48,10 +48,14 @@ function refreshTable()
 $(window).load(function()
 {
     refreshTable();
-
-    if (!error)
-        loop = setInterval(refreshTable, 30000); // 1000 = 1 sec
 });
+
+loop = window.setInterval(function()
+{
+    if (!error)
+        refreshTable();
+},30000);
+
 
 function getLinea(linea)
 {
@@ -120,12 +124,12 @@ function updateTable(info)
     if (info.vif1 == 0)
     {
         td1.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td1.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td1.item(3).innerHTML = fec;
 
@@ -134,12 +138,12 @@ function updateTable(info)
     if (info.vif2 == 0)
     {
         td2.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td2.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td2.item(3).innerHTML = fec;
 
@@ -148,12 +152,12 @@ function updateTable(info)
     if (info.vcor == 1)
     {
         td3.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td3.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td3.item(3).innerHTML = fec;
 
@@ -162,12 +166,12 @@ function updateTable(info)
     if (info.npc == 0)
     {
         td4.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td4.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td4.item(3).innerHTML = fec;
 
@@ -176,12 +180,12 @@ function updateTable(info)
     if (info.pfa1 == 1)
     {
         td5.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td5.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td5.item(3).innerHTML = fec;
 
@@ -190,12 +194,12 @@ function updateTable(info)
     if (info.pfa2 == 1)
     {
         td6.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td6.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td6.item(3).innerHTML = fec;
 
@@ -204,12 +208,12 @@ function updateTable(info)
     if (info.pfa3 == 1)
     {
         td7.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td7.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td7.item(3).innerHTML = fec;
 
@@ -218,12 +222,12 @@ function updateTable(info)
     if (info.pfa4 == 1)
     {
         td8.item(2).innerHTML =
-            "<span class='label label-success label-big'>Activo</span>";
+            "<h4><span class='label label-success label-big'>Activo</span></h4>";
     }
     else
     {
         td8.item(2).innerHTML =
-            "<span class='label label-danger label-big'>Pasivado</span>";
+            "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td8.item(3).innerHTML = fec;
 }

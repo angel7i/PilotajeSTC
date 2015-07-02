@@ -31,9 +31,8 @@ public class LineaBEstado extends HttpServlet implements Servlet
 
             if (a == null)
             {
-                System.out.println("A null");
                 JsonObject e = Json.createObjectBuilder().
-                        add("error", "ErrorDB").build();
+                        add("error", "ErrorConexion").build();
                 resp.getWriter().print(e);
                 return;
             }
