@@ -27,7 +27,7 @@ public class Linea8Estado extends HttpServlet implements Servlet
 
             if (a == null)
             {
-                System.out.println("A null");
+//                System.out.println("A null");
                 JsonObject e = Json.createObjectBuilder().
                         add("error", "ErrorDB").build();
                 resp.getWriter().print(e);

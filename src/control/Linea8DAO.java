@@ -83,7 +83,6 @@ public class Linea8DAO
             InetAddress address = InetAddress.getByName(url);
             boolean reachable = address.isReachable(2000);
 
-
             if (!reachable)
             {
                 return null;
@@ -94,11 +93,12 @@ public class Linea8DAO
 
             return sessionFactory;
         }
-        catch (Throwable ex)
+        catch (Exception ex)
         {
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
+            ex.printStackTrace();
         }
+
+        return null;
     }
 
     public static SessionFactory getSessionFactory(int sta)
@@ -107,7 +107,7 @@ public class Linea8DAO
         {
             if (sessionFactory == null)
             {
-//                System.out.println("Load " + database);
+                System.out.println("Load " + database);
                 sessionFactory = buildSessionFactory();
             }
             else
@@ -115,7 +115,7 @@ public class Linea8DAO
                 System.out.println(database + " = " + db);
                 if (!Objects.equals(database, db))
                 {
-//                    System.out.println("Change " + database);
+                    System.out.println("Change " + database);
                     sessionFactory.close();
                     sessionFactory = buildSessionFactory();
                 }
@@ -143,7 +143,6 @@ public class Linea8DAO
             session = getSessionFactory(sta).openSession();
             ManagedSessionContext.bind(session);
             tr = session.getTransaction();
-
         }
         catch (Exception e)
         {
@@ -168,7 +167,6 @@ public class Linea8DAO
                 return null;
             }
         }
-
 
         try
         {
@@ -208,7 +206,6 @@ public class Linea8DAO
                 }
 
                 session.close();
-                session = null;
             }
 
             ManagedSessionContext.unbind(sessionFactory);
@@ -284,6 +281,7 @@ public class Linea8DAO
         {
             if (session != null && (session.isConnected() || session.isOpen()))
                 session.close();
+
             ManagedSessionContext.unbind(sessionFactory);
         }
 

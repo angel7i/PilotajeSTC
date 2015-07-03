@@ -195,7 +195,6 @@ public class LineaBDAO
                 }
 
                 session.close();
-                session = null;
             }
 
             ManagedSessionContext.unbind(sessionFactory);

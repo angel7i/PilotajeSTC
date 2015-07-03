@@ -30,14 +30,13 @@ public class Linea8Pasivacion extends HttpServlet implements Servlet
 
             if (cambioedos == null)
             {
-                System.out.println("Cambios null");
+//                System.out.println("Cambios null");
                 JsonObject e = Json.createObjectBuilder().
                         add("error", "ErrorDB").build();
                 resp.getWriter().print(e);
                 return;
             }
 
-//            System.out.println("Cambios: " + cambioedos.size());
             resp.getWriter().print(ArrayJson(cambioedos));
         }
         catch (NullPointerException npe)
