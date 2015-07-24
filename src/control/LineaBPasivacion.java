@@ -59,7 +59,7 @@ public class LineaBPasivacion extends HttpServlet implements Servlet
 
     private JsonArray ArrayJson(List<Cambioedo> cambioedos)
     {
-        JsonArrayBuilder jsonArray = null;
+        JsonArrayBuilder jsonArray;
 
         try
         {

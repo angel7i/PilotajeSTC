@@ -1,46 +1,201 @@
-function refreshTable(sta)
-{
-    var data = getLinea(sta);
-    data = JSON.stringify(data);
-    var json = "estacion=" + data;
+var estacion = null;
 
-    $.ajax(
+$(document).ready(function()
+{
+    $("#dateFrom").datetimepicker(
         {
-            type: 'POST',
-            url: 'pasivacion8',
-            data: json,
-            dataType: 'json',
-            success: function (data, textStatus)
+            format:'Y/m/d H:i',
+            lang: "es",
+            onShow:function(ct)
             {
-                //console.log(JSON.stringify(data));
-                if (data.error != "ErrorDB")
+                var date =  new Date($('#dateTo').val());
+                var df = date.dateFormat("Y/m/d");
+
+                this.setOptions(
                 {
-                    updateTable(data);
-                    console.log(textStatus);
-                }
-                else
-                {
-                    console.log("Error de conexion");
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                console.log("No hay conexion");
-                console.log(errorThrown + ' : ' + textStatus);
+                    maxDate: date != null ? df : new Date()
+                })
             }
-        });
+        }
+    );
+    $("#dateTo").datetimepicker(
+        {
+            format:'Y/m/d H:i',
+            lang: "es",
+            onShow:function(ct)
+            {
+                var date =  new Date($('#dateFrom').val());
+                var df = date.dateFormat("Y/m/d");
+
+                this.setOptions(
+                {
+                    maxDate: new Date(),
+                    minDate: $('#dateFrom').val() ? df : false
+                })
+            }
+        }
+    );
+    $('#buscar').puibutton();
+
+    $('#buscar').on("click", function()
+    {
+        var from = $("#dateFrom").val();
+        var to = $("#dateTo").val();
+
+        if (from.length == 0 || to.length == 0)
+        {
+            alert("Selecciona las fechas a buscar");
+        }
+        else
+        {
+            $('#t1').puidatatable('reset');
+            $('#t1').puidatatable(
+                {
+                    responsive : true,
+                    paginator:
+                    {
+                        rows: 20
+                    },
+                    columns:
+                        [
+                            {field:'vif1', headerText: 'VIF1'},
+                            {field:'vif2', headerText: 'VIF2'},
+                            {field:'vcor', headerText: 'VCOR'},
+                            {field:'npc', headerText: 'NPC'},
+                            {field:'pfa1', headerText: 'PFA1'},
+                            {field:'pfa2', headerText: 'PFA2'},
+                            {field:'pfa3', headerText: 'PFA3'},
+                            {field:'pfa4', headerText: 'PFA4'},
+                            {field:'fecha', headerText: 'Fecha', sortable:true}
+                        ],
+                    datasource: function(callback)
+                    {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'pasivacion8',
+                            data: "estacion=" + getLinea(estacion) + "&from=" + from + "&to=" + to,
+                            dataType: 'json',
+                            context: this,
+                            success: function(response)
+                            {
+                                callback.call(this, response);
+                            },
+                            error: function (textStatus, errorThrown)
+                            {
+                                console.log("No hay conexion");
+                                console.log(errorThrown + ' : ' + textStatus);
+                            }
+                        });
+                    },
+                    selectionMode: 'single',
+                    rowSelect: function(event, data)
+                    {
+                        $('#messages').remove();
+                        var message = "<div id='messages' title='Detalle'>Fecha: " + data.fecha + "</div>";
+                        $("#t1").before(message);
+                        $('#messages').puidialog( {
+                            location: "center top",
+                            closable: true,
+                            draggable: true,
+                            responsive: true
+                        });
+                        $('#messages').puidialog("show");
+                    },
+                    rowUnselect: function(event, data)
+                    {
+                        $('#messages').remove();
+                    }
+                });
+        }
+    });
+});
+
+function refreshTable()
+{
+    var json = "estacion=" + getLinea(estacion);
+
+    $('#t1').puidatatable(
+    {
+        responsive : true,
+        paginator:
+        {
+            rows: 20
+        },
+        columns:
+        [
+            {field:'vif1', headerText: 'VIF1'},
+            {field:'vif2', headerText: 'VIF2'},
+            {field:'vcor', headerText: 'VCOR'},
+            {field:'npc', headerText: 'NPC'},
+            {field:'pfa1', headerText: 'PFA1'},
+            {field:'pfa2', headerText: 'PFA2'},
+            {field:'pfa3', headerText: 'PFA3'},
+            {field:'pfa4', headerText: 'PFA4'},
+            {field:'fecha', headerText: 'Fecha', sortable:true}
+        ],
+        datasource: function(callback)
+        {
+            $.ajax(
+            {
+                type: 'POST',
+                url: 'pasivacion8',
+                data: json,
+                dataType: 'json',
+                context: this,
+                success: function(response)
+                {
+                    callback.call(this, response);
+                },
+                error: function (textStatus, errorThrown)
+                {
+                    console.log("No hay conexion");
+                    console.log(errorThrown + ' : ' + textStatus);
+                }
+            });
+        },
+        selectionMode: 'single',
+        rowSelect: function(event, data)
+        {
+            $('#messages').remove();
+            var message = "<div id='messages' title='Detalle'>" +
+                "<table class='table table-hover'>" +
+                    "<thead>" +
+                    "<tr>" +
+                        "<th>Nombre</th>" +
+                        "<th>Estado</th>" +
+                        "<th>Actividad</th>" +
+                        "<th>Fecha</th>" +
+                    "<tr>" +
+                    "</thead>" +
+                "</table>" +
+                "Fecha: " + data.fecha +
+                "</div>";
+            $("#t1").before(message);
+            $('#messages').puidialog( {
+                location: "center top",
+                closable: true,
+                draggable: true,
+                responsive: true
+            });
+            $('#messages').puidialog("show");
+        },
+        rowUnselect: function(event, data)
+        {
+            $('#messages').remove();
+        }
+    });
+    $('#t1').show();
 }
 
 $(window).load(function()
 {
-    var estacion = $("#estacion").val();
+    estacion = $("#estacion").val();
     //console.log(estacion);
-    refreshTable(estacion);
+    refreshTable();
 });
 
 function getLinea(linea)
 {
-
     switch (linea)
     {
         case "iztacalco":
@@ -85,23 +240,4 @@ function getLinea(linea)
     }
 }
 
-function updateTable(info)
-{
-    var table = document.getElementById("t1");
-    var tbody = table.getElementsByTagName("tbody").item(0);
 
-    for (var i=0; i<info.length; i++)
-    {
-        var row = tbody.insertRow();
-        row.insertCell(0).innerHTML = info[i].vif1;
-        row.insertCell(1).innerHTML = info[i].vif2;
-        row.insertCell(2).innerHTML = info[i].vcor;
-        row.insertCell(3).innerHTML = info[i].npc;
-        row.insertCell(4).innerHTML = info[i].pfa1;
-        row.insertCell(5).innerHTML = info[i].pfa2;
-        row.insertCell(6).innerHTML = info[i].pfa3;
-        row.insertCell(7).innerHTML = info[i].pfa4;
-        row.insertCell(8).innerHTML = info[i].fecha;
-    }
-
-}

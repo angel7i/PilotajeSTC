@@ -52,12 +52,12 @@
           </li>
           <li class="sub-menu">
             <a href="lineaBP.jsp" >
-              <span>Pasivación Línea B</span>
+              <span>Reportes Línea B</span>
             </a>
           </li>
           <li class="sub-menu">
             <a href="linea8P.jsp" >
-              <span>Pasivación Línea 8</span>
+              <span>Reportes Línea 8</span>
             </a>
           </li>
         </ul>

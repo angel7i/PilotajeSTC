@@ -11,7 +11,12 @@
     <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
 
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="js/primeui/themes/bootstrap/theme.css" />
+    <link rel="stylesheet" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/primeui/primeui-2.0-min.css" />
+    <link rel="stylesheet" href="css/jquery-ui-themes-1.11.4/themes/ui-lightness/jquery-ui.min.css" />
+    <link rel="stylesheet" href="js/datetimepicker-master/jquery.datetimepicker.css" />
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
@@ -118,12 +123,12 @@
             </li>
             <li class="sub-menu">
                 <a href="lineaBP.jsp" >
-                    <span>Pasivación Línea B</span>
+                    <span>Reportes Línea B</span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a href="linea8P.jsp" >
-                    <span>Pasivación Línea 8</span>
+                    <span>Reportes Línea 8</span>
                 </a>
             </li>
         </ul>
@@ -135,33 +140,18 @@
 
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> <%out.println(estacion);%></h3>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="content-panel">
 
-                    <table class="table table-hover" id="t1">
-                        <h4><i class="fa fa-angle-right"></i> Señales de la estación <%out.println(estacion);%></h4>
-                        <hr>
-                        <thead>
-                        <tr>
-                            <th>VIF1</th>
-                            <th>VIF2</th>
-                            <th>VCOR</th>
-                            <th>NPC</th>
-                            <th>PFA1</th>
-                            <th>PFA2</th>
-                            <th>PFA3</th>
-                            <th>PFA4</th>
-                            <th>Fecha</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <h3><i class="fa fa-angle-right"></i> <%out.println(estacion);%></h3>
+        <hr>
+
+        <label for="dateFrom">De: </label><input type="text" id="dateFrom">
+        <label for="dateTo">A: </label><input type="text" id="dateTo">
+        <button id="buscar" type="button">Buscar</button>
+        <hr>
+
+        <%--<div id="messages" title="Detalle"></div>--%>
+        <div id="t1"></div>
+
     </section>
 </section>
 
@@ -171,7 +161,10 @@
 
 <%--Scripts--%>
 <script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="js/primeui/primeui-2.0-min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/pasivacion8.js"></script>
+<script src="js/datetimepicker-master/jquery.datetimepicker.js"></script>
+<script src="js/pasivacion8.js" charset="utf-8"></script>
 </body>
 </html>

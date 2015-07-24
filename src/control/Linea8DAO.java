@@ -1,11 +1,13 @@
 package control;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.context.internal.ManagedSessionContext;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.GenericJDBCException;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.UnknownServiceException;
@@ -13,6 +15,7 @@ import tables8.Actual;
 import tables8.Cambioedo;
 
 import java.net.InetAddress;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -269,6 +272,88 @@ public class Linea8DAO
         }
         catch (Exception e)
         {
+            System.out.println("Error2");
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
+
+            return null;
+        }
+        finally
+        {
+            if (session != null && (session.isConnected() || session.isOpen()))
+                session.close();
+
+            ManagedSessionContext.unbind(sessionFactory);
+        }
+
+        return cambioedos;
+    }
+
+    public static List<Cambioedo> getPasivacionesFromTo(int sta, Date from, Date to)
+    {
+        db = database;
+        database = config(sta);
+        List<Cambioedo> cambioedos = null;
+        Session session = null;
+        Transaction tr = null;
+
+        try
+        {
+            session = getSessionFactory(sta).openSession();
+            ManagedSessionContext.bind(session);
+            tr = session.getTransaction();
+        }
+        catch (Exception e)
+        {
+            if (e instanceof UnknownServiceException)
+            {
+                System.out.println("Error de Servicio");
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
+            }
+            else
+            {
+                System.out.println("Error de Session");
+                if (sessionFactory != null && !sessionFactory.isClosed())
+                {
+                    sessionFactory.close();
+                }
+            }
+
+            return null;
+        }
+        try
+        {
+            tr.begin();
+            Criteria cr = session.createCriteria(Cambioedo.class);
+            cr.add(Restrictions.between("fecha", from, to));
+            cambioedos = cr.list();
+
+            System.out.println("Resultados: " + cambioedos.size());
+
+//            cambioedos.stream().forEach(System.out::println);
+
+
+            if (!tr.wasCommitted())
+                tr.commit();
+        }
+        catch (GenericJDBCException ge)
+        {
+            System.out.println("Error1");
+            if (sessionFactory != null && !sessionFactory.isClosed())
+            {
+                sessionFactory.close();
+            }
+
+            return null;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
             System.out.println("Error2");
             if (sessionFactory != null && !sessionFactory.isClosed())
             {

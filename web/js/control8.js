@@ -4,11 +4,41 @@ var estacion = $("#estacion").val();
 
 $(document).ready(function()
 {
+    $('#message').puimessages(
+    {
+        closable: false
+    });
+    $("#reset").puibutton();
+    $("#reset").puibutton(
+    {
+        click: function(e)
+        {
+            $("#resetForm").show();
+            $("#cancelReset").show();
+            $("#reset").hide();
+        }
+    });
+    $("#doReset").puibutton();
+    $("#doReset").puibutton(
+    {
+        click: function(e)
+        {
+            alert("RESETEAR");
+        }
+    });
+    $("#cancelReset").puibutton();
+    $("#cancelReset").puibutton(
+    {
+        click: function(e)
+        {
+            $("#resetForm").hide();
+            $("#reset").show();
+        }
+    });
 });
 
 function refreshTable()
 {
-    //console.log(estacion);
     var data = getLinea(estacion);
     data = JSON.stringify(data);
     var json = "estacion=" + data;
@@ -118,6 +148,7 @@ function updateTable(info)
     var tr7 = rows.item(6);
     var tr8 = rows.item(7);
     var fec = info.fecha;
+    var pasivacion = true;
 
     var td1 = tr1.getElementsByTagName("td");
     td1.item(1).innerHTML = info.vif1;
@@ -128,6 +159,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td1.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -142,6 +174,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td2.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -156,6 +189,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td3.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -170,6 +204,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td4.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -184,6 +219,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td5.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -198,6 +234,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td6.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -212,6 +249,7 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td7.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
@@ -226,8 +264,32 @@ function updateTable(info)
     }
     else
     {
+        pasivacion = true;
         td8.item(2).innerHTML =
             "<h4><span class='label label-danger label-big'>Pasivado</span></h4>";
     }
     td8.item(3).innerHTML = fec;
+
+    if (pasivacion)
+    {
+        if ($("#reset").css('display') == 'none')
+        {
+            $("#reset").show();
+        }
+        else
+        {
+            $("#reset").hide();
+        }
+
+        $('#message').puimessages('show', 'error',
+        {
+            summary: 'Pasivacion: ',
+            detail: 'Resetear la Unidad de Monitoreo manualmente'
+        });
+    }
+    else
+    {
+        $("#reset").hide();
+        $('#message').hide();
+    }
 }

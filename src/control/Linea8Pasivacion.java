@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +26,20 @@ public class Linea8Pasivacion extends HttpServlet implements Servlet
     {
         try
         {
+            List<Cambioedo> cambioedos = null;
             int info = Integer.parseInt(req.getParameter("estacion"));
-            List<Cambioedo> cambioedos = Linea8DAO.getPasivaciones(info);
 
+            if (req.getParameter("from") != null && req.getParameter("to") != null)
+            {
+                Date from = toDate(req.getParameter("from"));
+                Date to = toDate(req.getParameter("to"));
+                System.out.println("Estacion: " + info + " From:"+from+" To:"+to);
+                cambioedos = Linea8DAO.getPasivacionesFromTo(info, from, to);
+            }
+            else
+            {
+                cambioedos = Linea8DAO.getPasivaciones(info);
+            }
             if (cambioedos == null)
             {
 //                System.out.println("Cambios null");
@@ -92,7 +104,24 @@ public class Linea8Pasivacion extends HttpServlet implements Servlet
 
     private String fecha(Date d)
     {
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss a'   'dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy' 'hh:mm:ss a");
         return format.format(d);
+    }
+
+    private Date toDate(String s)
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
+        Date d = null;
+
+        try
+        {
+            d = format.parse(s);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return  d;
     }
 }

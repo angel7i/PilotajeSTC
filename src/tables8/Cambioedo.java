@@ -150,9 +150,11 @@ public class Cambioedo  implements java.io.Serializable {
         this.fecha = fecha;
     }
 
-
-
-
+    @Override
+    public String toString()
+    {
+        return fecha.toString();
+    }
 }
 
 

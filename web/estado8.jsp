@@ -11,7 +11,11 @@
   <title>Sistema de Monitoreo de Armario de Pilotaje Automático</title>
 
   <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="js/primeui/themes/bootstrap/theme.css" />
+  <link rel="stylesheet" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
   <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="js/primeui/primeui-2.0-min.css" />
+  <link rel="stylesheet" href="css/jquery-ui-themes-1.11.4/themes/ui-lightness/jquery-ui.min.css" />
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
@@ -118,12 +122,12 @@
       </li>
       <li class="sub-menu">
         <a href="lineaBP.jsp" >
-          <span>Pasivación Línea B</span>
+          <span>Reportes Línea B</span>
         </a>
       </li>
       <li class="sub-menu">
         <a href="linea8P.jsp" >
-          <span>Pasivación Línea 8</span>
+          <span>Reportes Línea 8</span>
         </a>
       </li>
     </ul>
@@ -133,13 +137,33 @@
 <section id="main-content">
   <section class="wrapper">
     <h3><i class="fa fa-angle-right"></i> <%=estacion%></h3>
+
     <div class="row">
       <div class="col-md-12">
         <div class="content-panel">
 
+
+
           <table class="table table-hover" id="t1">
             <h4><i class="fa fa-angle-right"></i> Estado actual de las señales estación <%=estacion%></h4>
             <hr>
+
+            <div id="message" ></div>
+            <div id="resetForm" class="form-inline" role="form" style="display:none;">
+              <div class="form-group">
+                <label class="sr-only" for="user">Usuario</label>
+                <input type="email" class="form-control" id="user" placeholder="Usuario">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Contraseña">
+              </div>
+              <button id="doReset" type="submit">Reset</button>
+              <button id="cancelReset" type="submit">Cancelar</button>
+            </div>
+
+
+            <h4><button id="reset" type="button" style="display:none;">Resetear</button></h4>
             <thead>
             <tr>
               <th>Nombre</th>
@@ -211,6 +235,8 @@
 
 <%--Scripts--%>
 <script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="js/primeui/primeui-2.0-min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/control8.js"></script>
 </body>

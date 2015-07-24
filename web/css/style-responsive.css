@@ -4,6 +4,10 @@
         margin-bottom: 40px;
     }
 
+    #reset
+    {
+        left: 35%;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
@@ -14,11 +18,19 @@
     }
 
     /*chat room*/
-
+    #reset
+    {
+        left: 35%;
+    }
 
 }
 
 @media (max-width: 768px) {
+
+    #reset
+    {
+        left: 35%;
+    }
 
     .header {
         position: absolute;

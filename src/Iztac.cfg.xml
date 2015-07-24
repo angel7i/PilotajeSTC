@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://18.11.10.10/pilotaje8</property>
+        <property name="connection.url">jdbc:mysql://15.59.252.251/pilotaje8</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">readerp8</property>
         <property name="connection.password">readerp8</property>
@@ -13,12 +13,11 @@
          <!--org.hibernate.HibernateException: No CurrentSessionContext configured! -->
         <property name="hibernate.current_session_context_class">managed</property>
 
-        <property name="hibernate.c3p0.min_size">5</property>
-        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.min_size">2</property>
+        <property name="hibernate.c3p0.max_size">5</property>
         <property name="hibernate.c3p0.timeout">300</property>
         <property name="hibernate.c3p0.max_statements">50</property>
         <property name="hibernate.c3p0.idle_test_period">100</property>
-
 
         <!-- Mapping with model class containing annotations -->
         <mapping class="tables8.Usuarios"/>

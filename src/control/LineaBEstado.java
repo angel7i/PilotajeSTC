@@ -72,7 +72,7 @@ public class LineaBEstado extends HttpServlet implements Servlet
 
     private String fecha(Date d)
     {
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss a'   'dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy' 'hh:mm:ss a");
         return format.format(d);
     }
 }
