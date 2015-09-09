@@ -35,7 +35,9 @@ $(document).ready(function()
             }
         }
     );
-    $('#buscar').puibutton();
+    $('#buscar').puibutton({
+        icon: 'fa-search'
+    });
 
     $('#buscar').on("click", function()
     {
@@ -48,7 +50,9 @@ $(document).ready(function()
         }
         else
         {
-            $('#t1').puidatatable('reset');
+            $('#t1').remove();
+            var t = "<div id='t1'></div>";
+            $("#nextReport").after(t);
             $('#t1').puidatatable(
                 {
                     responsive : true,
@@ -66,7 +70,7 @@ $(document).ready(function()
                             {field:'pfa2', headerText: 'PFA2'},
                             {field:'pfa3', headerText: 'PFA3'},
                             {field:'pfa4', headerText: 'PFA4'},
-                            {field:'fecha', headerText: 'Fecha', sortable:true}
+                            {field:'fecha', headerText: 'Fecha', sortable:true, content: format}
                         ],
                     datasource: function(callback)
                     {
@@ -91,15 +95,14 @@ $(document).ready(function()
                     rowSelect: function(event, data)
                     {
                         $('#messages').remove();
-                        var message = "<div id='messages' title='Detalle'>Fecha: " + data.fecha + "</div>";
-                        $("#t1").before(message);
-                        $('#messages').puidialog( {
-                            location: "center top",
-                            closable: true,
-                            draggable: true,
-                            responsive: true
+                        var message = "<div id='messages' title='Detalle' style='position: fixed; display: inline-block'>" +
+                            "Fecha: " + data.fecha +
+                            "</div>";
+                        $("#nextReport").after(message);
+                        $('#messages').puidialog(
+                        {
+                            closable: true
                         });
-                        $('#messages').puidialog("show");
                     },
                     rowUnselect: function(event, data)
                     {
@@ -191,7 +194,7 @@ $(window).load(function()
 {
     estacion = $("#estacion").val();
     //console.log(estacion);
-    refreshTable();
+    //refreshTable();
 });
 
 function getLinea(linea)
@@ -238,6 +241,11 @@ function getLinea(linea)
             return 19;
         default : return -1;
     }
+}
+
+function format(data)
+{
+    return data.fecha.replace(/(\r\n|\n|\r)/gm, "<br>");
 }
 
 

@@ -274,16 +274,16 @@ function updateTable(info)
     {
         if ($("#reset").css('display') == 'none')
         {
-            $("#reset").show();
+            $("#reset").css('display', 'block');
         }
         else
         {
-            $("#reset").hide();
+            $("#reset").css('display', 'none');
         }
 
         $('#message').puimessages('show', 'error',
         {
-            summary: 'Pasivacion: ',
+            summary: 'Unidad pasivada: ',
             detail: 'Resetear la Unidad de Monitoreo manualmente'
         });
     }

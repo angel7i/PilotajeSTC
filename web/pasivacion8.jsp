@@ -147,10 +147,11 @@
         <label for="dateFrom">De: </label><input type="text" id="dateFrom">
         <label for="dateTo">A: </label><input type="text" id="dateTo">
         <button id="buscar" type="button">Buscar</button>
-        <hr>
+
+        <hr id="nextReport">
 
         <%--<div id="messages" title="Detalle"></div>--%>
-        <div id="t1"></div>
+        <%--<div id="t1"></div>--%>
 
     </section>
 </section>
